@@ -3,7 +3,7 @@
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 
-var path = require("path");
+let path = require("path");
 
 module.exports = {
   entry: "./home",
@@ -27,6 +27,20 @@ module.exports = {
       LANG: '"ru"'
       // LANG: JSON.stringify('ru');
     })
-  ]
+  ],
+
+  module: {
+
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel?presets[]=es2015&optional[]=runtime'
+      // loader: 'babel',
+      // query: {
+      //   presets: ['es2015', 'stage-0'],
+      //   'optional[]': 'runtime'
+      // }
+    }]
+
+  }
 
 };
