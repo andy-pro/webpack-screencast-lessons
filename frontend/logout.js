@@ -3,9 +3,9 @@
 module.exports = function(message) {
 
   if (NODE_ENV == 'development') {
-    console.log('received message by login:', message);
+    console.log('received message by logout:', message);
   }
 
-  alert(`Login received: ${message}`);
+  alert(`Logout received: ${message}`);
 
 };
