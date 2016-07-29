@@ -1,19 +1,17 @@
 'use strict';
 
-document.getElementById('loginButton').onclick = function() {
 
-  require.ensure([], function(require) {
-    let login = require('./login');
-    login('from app to login');
-  }, 'auth');
+// let pathname = location.pathname;
+// console.log(pathname);
+//
+// let moduleName = pathname.slice(1);
+// console.log(moduleName);
 
-};
+let moduleName = location.pathname.slice(1);
 
-document.getElementById('logoutButton').onclick = function() {
+console.log(moduleName);
 
-  require.ensure([], function(require) {
-    let logout = require('./logout');
-    logout('from app to logout');
-  }, 'auth');
-
-};
+if (moduleName) {
+  let route = require('./routes/' + moduleName);
+  route();
+}
