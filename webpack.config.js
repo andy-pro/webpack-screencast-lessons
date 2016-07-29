@@ -6,11 +6,19 @@ const webpack = require('webpack');
 let path = require("path");
 
 module.exports = {
-  entry: "./home",
+
+  context: __dirname + '/frontend',
+
+  entry: {
+    home: "./home",
+    about: "./about"
+  },
+
   output: {
-    filename: "build.js",
-    // global variable 'home'
-    library: "home"
+    path: 'public',
+    filename: "[name].js",
+    // global variables for output module.exports 'home', 'about'
+    library: "[name]"
   },
 
   watch: NODE_ENV == 'development',
