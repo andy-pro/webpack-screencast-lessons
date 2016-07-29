@@ -12,6 +12,8 @@ module.exports = {
 
   watchOptions: {
     aggregateTimeout: 200
-  }
+  },
+
+  devtool: "cheap-inline-module-source-map"
 
 };
