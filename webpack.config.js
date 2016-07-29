@@ -6,5 +6,12 @@ module.exports = {
     filename: "build.js",
     // global variable 'home'
     library: "home"
+  },
+
+  watch: true,
+
+  watchOptions: {
+    aggregateTimeout: 200
   }
+
 };
