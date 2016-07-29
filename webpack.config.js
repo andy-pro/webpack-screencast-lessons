@@ -1,3 +1,8 @@
+'use strict';
+
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const webpack = require('webpack');
+
 var path = require("path");
 
 module.exports = {
@@ -8,12 +13,20 @@ module.exports = {
     library: "home"
   },
 
-  watch: true,
+  watch: NODE_ENV == 'development',
 
   watchOptions: {
     aggregateTimeout: 200
   },
 
-  devtool: "cheap-inline-module-source-map"
+  devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
+
+  plugins: [
+    new webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify(NODE_ENV),
+      LANG: '"ru"'
+      // LANG: JSON.stringify('ru');
+    })
+  ]
 
 };
