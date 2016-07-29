@@ -44,7 +44,8 @@ module.exports = {
 
     loaders: [{
       test: /\.js$/,
-      loader: 'babel?presets[]=es2015&optional[]=runtime'
+      // loader: 'babel?presets[]=es2015&optional[]=runtime'
+      loader: 'babel?presets[]=es2015'
       // loader: 'babel',
       // query: {
       //   presets: ['es2015', 'stage-0'],
@@ -55,3 +56,15 @@ module.exports = {
   }
 
 };
+
+if (NODE_ENV == 'production') {
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        drop_console: true,
+        unsafe: true
+      }
+    })
+  );
+}
