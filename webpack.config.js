@@ -7,18 +7,16 @@ let path = require("path");
 
 module.exports = {
 
-  context: __dirname + '/frontend',
+  context: path.join(__dirname, 'frontend'),
 
   entry: {
-    home: "./home",
-    about: "./about"
+    app: "./app"
   },
 
   output: {
-    path: 'public',
-    filename: "[name].js",
-    // global variables for output module.exports 'home', 'about'
-    library: "[name]"
+    path: path.join(__dirname, 'public', '/js'),
+    publicPath: 'js/',
+    filename: "[name].js"
   },
 
   watch: NODE_ENV == 'development',
@@ -35,9 +33,6 @@ module.exports = {
       NODE_ENV: JSON.stringify(NODE_ENV),
       LANG: '"ru"'
       // LANG: JSON.stringify('ru');
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "common"
     })
   ],
 
