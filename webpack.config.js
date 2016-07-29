@@ -35,6 +35,9 @@ module.exports = {
       NODE_ENV: JSON.stringify(NODE_ENV),
       LANG: '"ru"'
       // LANG: JSON.stringify('ru');
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "common"
     })
   ],
 
