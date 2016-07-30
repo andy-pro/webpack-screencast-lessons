@@ -10,9 +10,11 @@ module.exports = {
 
   context: sources,
 
-  entry: {
-    app: "./app"
-  },
+  // entry: {
+  //   main: "./main"
+  // },
+
+  entry: "./main",
 
   output: {
     path: path.join(__dirname, 'public', '/js'),
@@ -20,7 +22,7 @@ module.exports = {
     filename: "[name].js"
   },
 
-  // watch: NODE_ENV == 'development',
+  watch: NODE_ENV == 'development',
 
   watchOptions: {
     aggregateTimeout: 200
@@ -55,20 +57,20 @@ module.exports = {
 
     loaders: [{
       test: /\.js$/,
-      // exclude: /\/node_modules\//,
-      // exclude: /node_modules/,
-      include: sources,
-      // loader: 'babel?presets[]=es2015&optional[]=runtime'
-      // loader: 'babel?presets[]=es2015'
       loader: 'babel',
       query: {
         presets: ['es2015', 'stage-0']
       }
+    }, {
+      test:/\.jade$/,
+      loader: "jade"
+    }, {
+      test:/\.css$/,
+      loader: "style!css" // !autoprefixer?browsers=last 2 version
+    }, {
+      test:/\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
+      loader: "file?name=[path][name].[ext]"
     }]
-
-    // noParse: /lodash\/lodash.js/
-    // , noParse: /node_modules\/angular\/angular.js/
-
   }
 
 };
