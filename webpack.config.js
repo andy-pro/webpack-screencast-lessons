@@ -4,10 +4,11 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 
 let path = require("path");
+let sources = path.join(__dirname, 'frontend');
 
 module.exports = {
 
-  context: path.join(__dirname, 'frontend'),
+  context: sources,
 
   entry: {
     app: "./app"
@@ -19,13 +20,13 @@ module.exports = {
     filename: "[name].js"
   },
 
-  watch: NODE_ENV == 'development',
+  // watch: NODE_ENV == 'development',
 
   watchOptions: {
     aggregateTimeout: 200
   },
 
-  devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
+  // devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
 
   plugins: [
     new webpack.NoErrorsPlugin(),
@@ -33,10 +34,10 @@ module.exports = {
       NODE_ENV: JSON.stringify(NODE_ENV),
       LANG: '"ru"'
       // LANG: JSON.stringify('ru');
-    }),
-    new webpack.ProvidePlugin({
-      _: 'lodash'
     })
+    // new webpack.ProvidePlugin({
+    //   _: 'lodash'
+    // })
   ],
 
   resolve: {
@@ -54,14 +55,19 @@ module.exports = {
 
     loaders: [{
       test: /\.js$/,
+      // exclude: /\/node_modules\//,
+      // exclude: /node_modules/,
+      include: sources,
       // loader: 'babel?presets[]=es2015&optional[]=runtime'
-      loader: 'babel?presets[]=es2015'
-      // loader: 'babel',
-      // query: {
-      //   presets: ['es2015', 'stage-0'],
-      //   'optional[]': 'runtime'
-      // }
+      // loader: 'babel?presets[]=es2015'
+      loader: 'babel',
+      query: {
+        presets: ['es2015', 'stage-0']
+      }
     }]
+
+    // noParse: /lodash\/lodash.js/
+    // , noParse: /node_modules\/angular\/angular.js/
 
   }
 
