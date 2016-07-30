@@ -19,6 +19,10 @@ module.exports = {
     filename: "[name].js"
   },
 
+  externals: {
+    lodash: '_'
+  },
+
   watch: NODE_ENV == 'development',
 
   watchOptions: {

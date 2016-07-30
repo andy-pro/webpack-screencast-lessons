@@ -1,17 +1,11 @@
 'use strict';
 
+let _ = require('lodash');
 
-// let pathname = location.pathname;
-// console.log(pathname);
-//
-// let moduleName = pathname.slice(1);
-// console.log(moduleName);
+let users = [
+  {id: "abcd", name: "Vasya"},
+  {id: "defa", name: "Petya"},
+  {id: "1234", name: "Masha"}
+];
 
-let moduleName = location.pathname.slice(1);
-
-console.log(moduleName);
-
-if (moduleName) {
-  let route = require('./routes/' + moduleName);
-  route();
-}
+console.log(_.map(users, 'name'));
