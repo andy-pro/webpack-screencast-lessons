@@ -19,10 +19,6 @@ module.exports = {
     filename: "[name].js"
   },
 
-  externals: {
-    lodash: '_'
-  },
-
   watch: NODE_ENV == 'development',
 
   watchOptions: {
@@ -37,6 +33,9 @@ module.exports = {
       NODE_ENV: JSON.stringify(NODE_ENV),
       LANG: '"ru"'
       // LANG: JSON.stringify('ru');
+    }),
+    new webpack.ProvidePlugin({
+      _: 'lodash'
     })
   ],
 
